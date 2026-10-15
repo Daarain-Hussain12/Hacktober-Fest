@@ -6,8 +6,8 @@
 - Approved boundary: owner-side closing-time offer planner, not a customer marketplace.
 - Owners: Dawood and Daarain.
 - Active phase: `02_build` — implementation and build handoff complete. README and project files are published to `origin/main`; Phase 03 and the remaining Phase 04 handoff are pending.
-- Current artifact status: `01_spec/output/SPEC.md`, static application under `app/`, `02_build/output/BUILD.md`, and root `README.md` exist. No dependencies, automated tests, API integration, or deployment were added. The app shell and share module served successfully over the specified local server; browser interaction remains unverified. Commit `2b6b37453e56e8d999997838dfb3510063d22ff1` is on `origin/main`.
-- Authorization in this session: user explicitly requested “push everything to github right now” and asked for a proper README first. The workspace has been committed and pushed to `origin/main`. Phase 03 and the rest of Phase 04 remain unauthorized.
+- Current artifact status: `01_spec/output/SPEC.md`, static application under `app/`, `02_build/output/BUILD.md`, and root `README.md` exist. No dependencies, automated tests, API integration, or deployment were added. The app shell and share module served successfully over the specified local server; browser interaction remains unverified. Commit `2b6b37453e56e8d999997838dfb3510063d22ff1` is on `origin/main`; the latest README revision is being published.
+- Authorization in this session: user explicitly requested “push everything to github right now” and later requested the README be reframed as a complete demo. That prior push authorization covers publishing this README update. Phase 03 and the rest of Phase 04 remain unauthorized.
 - Next phase authorization: pending owner review and explicit instruction to begin Phase 03.
 - Time constraint: the user earlier reported 1.5 hours; this is historical, NOT the time remaining at a fresh session. No exact submission timestamp was supplied.
 
@@ -36,6 +36,7 @@
 - No external research or integrations were needed in Phase 02.
 - Record future approvals with their exact referent; never mark a phase approved merely because an agent completed it.
 - Git push requested by user. Local branch is `main`, remote is `origin` (`Daarain-Hussain12/Hacktober-Fest`). Initial remote inspection found no refs and the local branch had no commits. The project was committed and pushed; the matching remote hash was verified.
+- README follow-up: removed the “Project status” section, added a concrete fictional sample walkthrough, and stated explicitly that no AI model is used. Offer generation and calculations are deterministic rules. Publish this updated README with the session checkpoint.
 
 ## Session record
 
@@ -69,6 +70,17 @@
 - Commands/checks and actual results: `git add -A` succeeded after approved Git-index write permission. `git -c user.name="Dawood Khan" -c user.email="dawood935841@gmail.com" commit -m "Build RescueShelf static MVP"` created root commit `2b6b37453e56e8d999997838dfb3510063d22ff1` with 21 files. Initial `git push origin main` returned HTTP 408; a subsequent remote lookup still showed no branch. `git -c http.version=HTTP/1.1 -c http.lowSpeedLimit=0 -c http.lowSpeedTime=600 push origin main` succeeded. `git ls-remote --heads origin main` confirmed the matching hash at `refs/heads/main`; local status was clean at verification.
 - Failures, limits, and pending approvals: First push attempt timed out but retry succeeded. Phase 03 and the remainder of Phase 04 remain pending.
 - Next executable action: Owner reviews the pushed README and project. Begin Phase 03 only with explicit authorization.
+
+### README demo-framing update
+
+- Session date/identifier: 2026-10-15, README demo-framing revision.
+- Authorized phase/batch and approval evidence: User asked whether an AI model was used, requested removal of the README project-status section, and asked to present the product as a complete demo. The user had already authorized pushing the project; that publishing instruction remains in scope for this README update.
+- Observed starting state: Re-read `AGENTS.md`, `CONTEXT.md`, `STATE.md`, and the current `README.md`. The last published commit was `0720b92`; the workspace was clean.
+- Changed files: Updated `README.md` and this `STATE.md` record.
+- Decisions and rationale: State that no AI model is used and describe deterministic rules. Replace status reporting in README with a walkthrough using only the explicitly fictional sample values and conditional financial labels. Preserve technical verification limits in the build handoff.
+- Commands/checks and actual results: Read the existing README and build handoff; no application tests or browser checks were run for this documentation edit. The README update and state record are pending commit/push.
+- Failures, limits, and pending approvals: No known blocker. Phase 03 and the remaining Phase 04 deliverable are still pending explicit authorization.
+- Next executable action: Commit the README and state update, push to `origin/main`, and verify the remote hash and clean worktree.
 
 ## Session record template
 
