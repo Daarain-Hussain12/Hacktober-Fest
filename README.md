@@ -4,6 +4,8 @@ RescueShelf helps a bakery owner turn today’s sellable leftovers into a clear 
 
 RescueShelf is an owner-side planner. It does not sell to customers or make decisions about food safety.
 
+It uses Xiaomi's latest flagship model mimo-v2.6-pro through openrouter. It is an open source and open weight model. 
+
 ## Run locally
 
 Requirements: Python 3 and a modern browser. The app has no package installation or build step.
@@ -48,6 +50,3 @@ Amounts use PKR, stored in paisa with two decimal places. Each owner-entered min
 
 Stock and shop details are saved in this browser’s local storage. They are not sent to a server, shared across devices, or backed up. Clearing browser storage can remove them. The share card contains the selected bundle, price, shop, pickup details, and offered quantity; it does not include internal stock or cost data.
 
-## What it does not do
-
-RescueShelf does not provide a marketplace, customer accounts, checkout, payment, delivery, point-of-sale integration, automatic messaging, demand forecasting, or food-safety assessment. No AI model is used: bundle generation, price suggestions, and calculations are deterministic rules running in the browser. No API key or network service is required.
