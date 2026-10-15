@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f6f2e9">
+    <title>RescueShelf — closing-time offers</title>
+    <link rel="stylesheet" href="./styles.css">
+    <script type="module" src="./src/main.js"></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="wordmark" href="#top" aria-label="RescueShelf home"><span class="wordmark-mark" aria-hidden="true">R</span> RescueShelf</a>
+      <span class="header-note">A calmer close for today's good food.</span>
+    </header>
+
+    <main id="top" class="page-shell">
+      <section class="intro" aria-labelledby="page-title">
+        <p class="eyebrow">YOUR CLOSING-TIME OFFER PLANNER</p>
+        <h1 id="page-title">Give today’s good bakes<br class="desktop-break"> a good next stop.</h1>
+        <p class="intro-copy">Turn the sellable stock you have left into a clear, ready-to-share offer. You choose what goes together and what it costs.</p>
+      </section>
+
+      <div id="notice" class="notice" role="status" aria-live="polite" hidden></div>
+      <div id="storage-warning" class="storage-warning" role="status" hidden></div>
+      <div id="sample-banner" class="sample-banner" hidden><span class="sample-dot" aria-hidden="true"></span> Fictional sample data is loaded. Replace it with your shop’s stock before sharing.</div>
+      <p class="privacy-note"><span aria-hidden="true">↳</span> Your stock stays in this browser. It is not shared or backed up.</p>
+
+      <nav class="step-nav" aria-label="Planner steps">
+        <a href="#stock"><span>01</span> Stock</a>
+        <a href="#offers"><span>02</span> Offers</a>
+        <a href="#review"><span>03</span> Review &amp; share</a>
+      </nav>
+
+      <section id="stock" class="panel stock-panel" aria-labelledby="stock-title">
+        <div class="section-heading">
+          <div><p class="eyebrow">START HERE</p><h2 id="stock-title">What’s left today?</h2></div>
+          <span id="item-count" class="count-pill">0 items</span>
+        </div>
+        <p class="section-copy">Add what is still sellable. Set a minimum price that works for you; RescueShelf won’t decide food safety or bundle compatibility.</p>
+        <div class="stock-table-wrap">
+          <div class="stock-table-labels" aria-hidden="true"><span>ITEM</span><span>LEFT</span><span>REGULAR PRICE</span><span>MINIMUM PRICE</span><span>RECORDED COST <i>optional</i></span><span>INCLUDE</span><span></span></div>
+          <div id="stock-list" class="stock-list"></div>
+        </div>
+        <div id="empty-stock" class="empty-stock" hidden>
+          <span class="empty-illustration" aria-hidden="true">✳</span>
+          <div><h3>Your shelf is clear.</h3><p>Add today’s leftover stock or load the fictional sample to explore the planner.</p></div>
+        </div>
+        <form id="add-item-form" class="add-item-form">
+          <h3>Add an item</h3>
+          <div class="add-fields">
+            <label>Item name<input name="name" required maxlength="60" placeholder="e.g. Sourdough loaf"></label>
+            <label>Units left<input name="stockUnits" type="number" min="0" step="1" required placeholder="0"></label>
+            <label>Regular price (PKR)<input name="regularPrice" inputmode="decimal" required placeholder="0.00"></label>
+            <label>Minimum price (PKR)<input name="floorPrice" inputmode="decimal" required placeholder="0.00"></label>
+            <label>Recorded cost (PKR)<input name="recordedCost" inputmode="decimal" placeholder="Unknown"></label>
+          </div>
+          <div class="form-bottom"><label class="check-label"><input name="sellable" type="checkbox" checked> Owner-confirmed sellable</label><label class="check-label"><input name="eligible" type="checkbox" checked> Include in bundles</label><button class="button button-dark" type="submit">Add to shelf <span aria-hidden="true">＋</span></button></div>
+          <p id="add-error" class="field-error" role="alert" hidden></p>
+        </form>
+        <div class="stock-actions"><button id="load-sample" type="button" class="text-button">Load fictional sample <span aria-hidden="true">↗</span></button><button id="clear-data" type="button" class="text-button text-button-muted">Clear all data</button></div>
+      </section>
+
+      <section id="offers" class="panel offers-panel" aria-labelledby="offers-title">
+        <div class="section-heading">
+          <div><p class="eyebrow">BUILT FROM YOUR SELECTION</p><h2 id="offers-title">Feasible bundles</h2></div>
+          <button id="generate-offers" class="button button-outline" type="button">Refresh offers <span aria-hidden="true">↻</span></button>
+        </div>
+        <p class="section-copy">Each option is a separate what-if using the same stock. Choose eligible items above; the planner doesn’t guess what belongs together.</p>
+        <div id="offer-status" class="offer-status" role="status"></div>
+        <div id="offer-list" class="offer-list"></div>
+      </section>
+
+      <section id="review" class="panel review-panel" aria-labelledby="review-title">
+        <div class="section-heading">
+          <div><p class="eyebrow">MAKE IT YOURS</p><h2 id="review-title">Review &amp; share</h2></div>
+          <span id="review-state" class="state-pill">No offer selected</span>
+        </div>
+        <p class="section-copy">Choose an option above, then set the quantity, price and pickup details. Nothing is deducted from your stock.</p>
+        <div id="review-empty" class="review-empty"><span aria-hidden="true">↗</span><p>Your selected offer will appear here.</p></div>
+        <div id="review-content" hidden>
+          <div id="review-fields" class="review-fields"></div>
+          <div class="review-summary">
+            <div class="summary-topline"><span class="summary-label">YOUR OFFER</span><span id="price-range" class="price-range"></span></div>
+            <div id="composition" class="composition"></div>
+            <div class="summary-metrics">
+              <div><span class="metric-label">IF ALL OFFERED BUNDLES SELL</span><strong id="revenue-value">—</strong></div>
+              <div><span class="metric-label">REVENUE LESS ENTERED ITEM COSTS</span><strong id="cost-value">—</strong></div>
+            </div>
+            <p id="cost-disclosure" class="fine-print"></p>
+          </div>
+          <div id="copy-preview-wrap" class="copy-preview-wrap">
+            <p class="offer-editor-title">COPY PREVIEW</p>
+            <pre id="copy-preview" class="copy-preview"></pre>
+          </div>
+          <div id="review-errors" class="review-errors" role="alert" hidden></div>
+          <div class="review-actions"><button id="confirm-offer" type="button" class="button button-outline">Review changes</button><button id="copy-offer" type="button" class="button button-dark">Copy offer text <span aria-hidden="true">↗</span></button><button id="download-card" type="button" class="button button-accent">Download share card <span aria-hidden="true">↓</span></button></div>
+          <p class="sharing-note">Your offer says only what you entered: the bundle, price, pickup details and quantity available.</p>
+        </div>
+      </section>
+
+      <footer class="site-footer"><span class="footer-mark" aria-hidden="true">✳</span><span>Made for the end of a good baking day.</span><span class="footer-right">RescueShelf · Owner planner</span></footer>
+    </main>
+  </body>
+</html>
